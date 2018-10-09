@@ -15,10 +15,8 @@ RUN ~/env/bin/pip3 install --upgrade --trusted-host pypi.python.org setuptools -
 
 RUN cd rec && ~/env/bin/pip3 install -e ".[testing]"
 
-RUN cd rec && ~/env/bin/pytest
-
 # Make port 6543 available to the world outside this container
 EXPOSE 6543
 	
 # Run app.py when the container launches
-CMD cd rec && ~/env/bin/pserve development.ini
+CMD cd rec && ~/env/bin/pserve --reload --verbose development.ini
