@@ -8,15 +8,14 @@ WORKDIR /rec
 ADD . /rec
 
 RUN apt-get update
-RUN apt-get install -y python3-pip python3-venv apache2
+RUN apt-get install -y python3-pip apache2
 
-RUN python3 -m venv ~/env
-RUN ~/env/bin/pip3 install --upgrade --trusted-host pypi.python.org setuptools -r requirements.txt
+RUN pip3 install --upgrade --trusted-host pypi.python.org setuptools -r requirements.txt
 
-RUN cd rec && ~/env/bin/pip3 install -e ".[testing]"
+RUN cd rec && pip3 install -e ".[testing]"
 
 # Make port 6543 available to the world outside this container
 EXPOSE 6543
-	
+
 # Run app.py when the container launches
-CMD cd rec && ~/env/bin/pserve --reload --verbose development.ini
+CMD cd rec && pserve --reload --verbose development.ini

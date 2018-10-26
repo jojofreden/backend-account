@@ -1,2 +1,5 @@
+bcrypt
 pyramid
 pyramid-oauthlib
+sqlalchemy
+psycopg2
