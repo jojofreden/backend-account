@@ -15,10 +15,10 @@ def add_route_handler(config, name, route, handler):
 def main(global_config, **settings):
     config = Configurator(settings=settings)
     engine = create_engine(settings["postgres.account.url"])
-    Session = sessionmaker(engine)
+    session = sessionmaker(engine)()
 
     def get_db_session(req):
-        return Session()
+        return session
 
     def get_db_engine(req):
         return engine
