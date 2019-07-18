@@ -8,12 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 class RegisterController:
-
     def register(self, request):
         account = Account(
-            username=request.params['username'],
+            username=request.json_body["username"],
         )
-
         request.account_db_session.add(account)
         request.account_db_session.commit()
 
